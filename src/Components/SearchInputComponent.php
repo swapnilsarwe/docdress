@@ -7,20 +7,6 @@ use Illuminate\View\Component;
 class SearchInputComponent extends Component
 {
     /**
-     * CSS Classes.
-     *
-     * @var string
-     */
-    public $class = '';
-
-    /**
-     * Version.
-     *
-     * @var string
-     */
-    public $version = 'master';
-
-    /**
      * Repository config.
      *
      * @var object|null
@@ -32,12 +18,17 @@ class SearchInputComponent extends Component
      *
      * @param  string $class
      * @return void
+     * @param string $version
      */
-    public function __construct($repo, $version = 'master', $class = '')
+    public function __construct($repo, /**
+     * Version.
+     */
+    public $version = 'master', /**
+     * CSS Classes.
+     */
+    public $class = '')
     {
         $this->config = (object) config("docdress.repos.{$repo}");
-        $this->version = $version;
-        $this->class = $class;
     }
 
     /**

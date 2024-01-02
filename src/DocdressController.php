@@ -23,7 +23,6 @@ class DocdressController
     /**
      * Create new DocdressController instance.
      *
-     * @param  Documentor $docs
      * @return void
      */
     public function __construct(Documentor $docs)
@@ -34,12 +33,11 @@ class DocdressController
     /**
      * Handle github webhook call.
      *
-     * @param  Request $request
      * @return void
      */
     public function webhook(Request $request)
     {
-        $version = last(explode('/', $request->ref));
+        $version = last(explode('/', (string) $request->ref));
         $repo = $request->repository['full_name'] ?? null;
 
         if (! array_key_exists($repo, config('docdress.repos'))) {
@@ -49,7 +47,7 @@ class DocdressController
         $githubPayload = $request->getContent();
         $githubHash = $request->header('X-Hub-Signature');
         $localToken = config("docdress.repos.{$repo}.webhook_token");
-        $localHash = 'sha1='.hash_hmac('sha1', $githubPayload, $localToken, false);
+        $localHash = 'sha1='.hash_hmac('sha1', $githubPayload, (string) $localToken, false);
 
         if (! hash_equals($githubHash, $localHash)) {
             return;
@@ -147,7 +145,7 @@ class DocdressController
      */
     protected function getRequestRepo(Request $request)
     {
-        return last(explode('.', $request->route()->getName()));
+        return last(explode('.', (string) $request->route()->getName()));
     }
 
     /**

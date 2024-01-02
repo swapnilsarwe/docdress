@@ -34,7 +34,6 @@ class Git implements GitContract
     /**
      * Create new Git instance.
      *
-     * @param  Filesystem $files
      * @return void
      */
     public function __construct(Filesystem $files)
@@ -46,7 +45,6 @@ class Git implements GitContract
     /**
      * Set silent.
      *
-     * @param  bool $silent
      * @return void
      */
     public function setSilent(bool $silent)
@@ -73,7 +71,6 @@ class Git implements GitContract
     /**
      * Set url resolver.
      *
-     * @param  Closure $resolver
      * @return void
      */
     public function setUrlResolver(Closure $resolver)

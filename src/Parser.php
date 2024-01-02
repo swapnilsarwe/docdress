@@ -59,7 +59,6 @@ class Parser extends ParsedownExtra
     /**
      * Add parser class.
      *
-     * @param  string $parser
      * @return $this
      */
     protected function parser(string $parser)

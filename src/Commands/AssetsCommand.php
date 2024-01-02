@@ -67,7 +67,7 @@ class AssetsCommand extends Command
                 continue;
             }
 
-            $publicDir = storage_path('app/public/'.config("docdress.repos.{$repo}.route_prefix").'/'.$version.str_replace($path, '', $file));
+            $publicDir = storage_path('app/public/'.config("docdress.repos.{$repo}.route_prefix").'/'.$version.str_replace($path, '', (string) $file));
 
             File::ensureDirectoryExists($publicDir);
             File::copyDirectory($file, $publicDir);
@@ -77,7 +77,6 @@ class AssetsCommand extends Command
     /**
      * Determines if file is a screen directory.
      *
-     * @param  SplFileInfo $file
      * @return bool
      */
     protected function isFileScreenDirectory(SplFileInfo $file)

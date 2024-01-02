@@ -32,9 +32,6 @@ class Documentor
     /**
      * Create new Documentor isntance.
      *
-     * @param  Filesystem $files
-     * @param  Cache      $cache
-     * @param  Parser     $parser
      * @return void
      */
     public function __construct(Filesystem $files, Cache $cache, Parser $parser)

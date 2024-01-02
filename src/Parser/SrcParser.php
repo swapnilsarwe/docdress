@@ -25,10 +25,10 @@ class SrcParser implements HtmlParserInterface
                 continue;
             }
 
-            if (array_key_exists('host', parse_url($link))) {
+            if (array_key_exists('host', parse_url((string) $link))) {
                 $replace = "{$link}";
             } else {
-                $path = explode('/', request()->getPathInfo());
+                $path = explode('/', (string) request()->getPathInfo());
                 array_pop($path);
                 $replace = '/storage'.implode('/', $path).'/'.Str::replaceFirst('./', '', $link);
             }

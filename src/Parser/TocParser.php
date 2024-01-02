@@ -24,14 +24,14 @@ class TocParser implements MarkdownParserInterface
             $replace = "<a name=\"{$slug}\"></a>\n"
                 .str_replace(
                     $heading,
-                    ' <a href="#'.$slug.'">'.ltrim($heading, ' ')."</a>\n",
-                    $headings[0][$key]
+                    ' <a href="#'.$slug.'">'.ltrim((string) $heading, ' ')."</a>\n",
+                    (string) $headings[0][$key]
                 );
             $match = $headings[0][$key]."\n";
 
             $markup = str_replace($match, $replace, $markup);
 
-            $link = '['.trim($heading)."](#{$slug})";
+            $link = '['.trim((string) $heading)."](#{$slug})";
 
             if (Str::startsWith($headings[0][$key], '###')) {
                 $toc[] = "    - {$link}";
